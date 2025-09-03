@@ -1,3 +1,5 @@
+using Greggs.Products.Api.DataAccess; 
+using Greggs.Products.Api.Models;     
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,9 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+
+        // Tells ASP.NET Core to use ProductAccess whenever a Product data service is requested
+        services.AddScoped<IDataAccess<Product>, ProductAccess>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
